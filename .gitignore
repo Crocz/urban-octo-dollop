@@ -1,0 +1,13 @@
+src/Taxmaster.API/bin/
+src/Taxmaster.API/obj/
+
+src/Taxmaster.Domain/bin/
+src/Taxmaster.Domain/obj/
+
+src/Taxmaster.Infrastructure/bin/
+src/Taxmaster.Infrastructure/obj/
+
+test/Taxmaster.Domain.Test/bin/
+test/Taxmaster.Domain.Test/obj/
+
+.DS_Store

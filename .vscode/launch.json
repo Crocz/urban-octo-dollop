@@ -1,0 +1,60 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Taxmaster.API/bin/Debug/net8.0/Taxmaster.API.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Taxmaster.API",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "justMyCode": true
+        },
+        {
+            "name": "Docker .NET Attach",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-compose: up",
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Taxmaster.API/Taxmaster.API.csproj"
+            },
+            "dockerServerReadyAction": {
+                "action": "openExternally",
+                "containerName": "api-1",
+                "pattern": "Now listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s://localhost:%s/swagger"
+            }
+        },
+        {
+            "name": "Run Docker Compose and Attach .NET Debugger",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "docker",
+                "pipeArgs": [
+                    "exec",
+                    "-i",
+                    "myapi"
+                ],
+                "debuggerPath": "/remote_debugger/vsdbg",
+                "quoteArgs": false
+            },
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}/src"
+            },
+            "preLaunchTask": "docker-compose: up"
+        }
+    ]
+}
